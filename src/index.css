@@ -64,21 +64,24 @@ body {
   width: 200px;
   font-family: 'Comic Sans MS';
   font-size: 1.5em;
-  background-color: rgb(35, 204, 35);
+  background-color: #4A90E2;
+  border-color: #D1D5DB;
 }
 
 #giveUpButton {
   width: 200px;
   font-family: 'Comic Sans MS';
   font-size: 1.5em;
-  background-color: rgb(249, 96, 96);
+  background-color: #B4533C;
+  border-color: #D1D5DB;
 }
 
 #helpButton {
   width: 100px;
   font-family: 'Comic Sans MS';
   font-size: 1.5em;
-  background-color: yellow;
+  background-color: #F3F4F6;
+  border-color: #D1D5DB;
 }
 
 #modal {
@@ -148,15 +151,17 @@ body {
 .clicks {
   width: 30%;
   margin: 3%;
-  font-size: 2em;
-  color:blue;
+  font-size: 2.5em;
+  font-weight: bold;
+  color: #6AAA64;
 }
 
 .clacks {
   width: 30%;
   margin: 3%;
-  font-size: 2em;
-  color:blueviolet;
+  font-size: 2.5em;
+  font-weight: bold;
+  color:#B59F3B;
 }
 
 /* GIVE UP TEXT */
