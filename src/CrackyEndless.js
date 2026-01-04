@@ -1,5 +1,4 @@
 import React, { useCallback } from "react"
-import Confetti from "react-confetti"
 import {useNavigate} from 'react-router-dom';
 
 export default function CrackyEndless() {
@@ -294,7 +293,7 @@ export default function CrackyEndless() {
 
   return (
     <div>
-      {cracked && <Confetti height={document.documentElement.offsetHeight}/>}
+      {cracked}
       <div className="nav-bar">
         <button id="crackyHomeButton" onClick={() => navigate("/")}>CRACKY Home</button>
         <button id="playAgainButton" type="button" onClick={refreshPage}>New CRACK</button>
