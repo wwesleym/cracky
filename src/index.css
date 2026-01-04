@@ -10,7 +10,7 @@ body {
   padding-left: 5%;
   padding-right: 5%;
   padding-bottom: 5%;
-  font-family: 'Comic Sans MS';
+  font-family: 'Comic Sans MS', 'Comic Neue';
 }
 
 /* CRACKY HOME */
@@ -218,32 +218,32 @@ body {
 
   #crackyHomeButton {
     width: 100px;
-    font-family: 'Comic Sans MS';
+    font-family: 'Comic Neue', 'Comic Sans MS';
     font-size: 1em;
   }
   
   #crackyDailyButton {
     width: 100px;
-    font-family: 'Comic Sans MS';
+    font-family: 'Comic Neue', 'Comic Sans MS';
     font-size: 1em;
   }
   
   #playAgainButton {
     margin-left: auto;
     width: 100px;
-    font-family: 'Comic Sans MS';
+    font-family: 'Comic Neue', 'Comic Sans MS';
     font-size: 1em;
   }
   
   #giveUpButton {
     width: 100px;
-    font-family: 'Comic Sans MS';
+    font-family: 'Comic Neue', 'Comic Sans MS';
     font-size: 1em;
   }
   
   #helpButton {
     width: 50px;
-    font-family: 'Comic Sans MS';
+    font-family: 'Comic Neue', 'Comic Sans MS';
     font-size: 1em;
   }
 
