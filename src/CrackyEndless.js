@@ -320,7 +320,7 @@ export default function CrackyEndless() {
       {/* title */}
       <div className="title-label">
         <h1>CRACKY</h1>
-        <h3>-endless-</h3>
+        <h3>-Endless-</h3>
       </div>
 
       {/* disabled row */}
