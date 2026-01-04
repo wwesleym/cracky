@@ -13,6 +13,22 @@ body {
   font-family: 'Baloo 2';
 }
 
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;         
+  width: 100%;      
+  text-align: center; 
+  font-size: 0.8rem;
+  color: #555;
+  padding: 5px 0;  
+}
+
+footer a {
+  color: #555;
+  text-decoration: underline;
+}
+
 /* CRACKY HOME */
 
 .home-buttons {
