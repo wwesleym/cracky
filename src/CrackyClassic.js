@@ -1,7 +1,7 @@
 import React, { useCallback } from "react"
 import {useNavigate} from 'react-router-dom';
 
-export default function CrackyEndless() {
+export default function CrackyClassic() {
   const navigate = useNavigate();
 
   // only allow one digit input 
@@ -325,7 +325,7 @@ export default function CrackyEndless() {
       {/* title */}
       <div className="title-label">
         <h1>CRACKY</h1>
-        <h3>- Endless -</h3>
+        <h3>- Classic -</h3>
       </div>
 
       {/* disabled row */}

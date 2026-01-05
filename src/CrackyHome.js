@@ -13,8 +13,8 @@ export default function CrackyHome() {
             <br></br>
             {/* buttons */}
             <div className="home-buttons">
-                <button id="navigateToCrackyEndlessButton" type="button" onClick={() => navigate("/endless")}>
-                    CRACKY Endless
+                <button id="navigateToCrackyClassicButton" type="button" onClick={() => navigate("/classic")}>
+                    CRACKY Classic
                 </button>
             </div>
             <br></br>

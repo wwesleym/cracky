@@ -37,7 +37,7 @@ footer a {
   justify-content: center;
 }
 
-#navigateToCrackyEndlessButton {
+#navigateToCrackyClassicButton {
   width: 200px;
   font-family: 'Baloo 2';
   font-size: 1.5em;
@@ -53,7 +53,7 @@ footer a {
 }
 
 
-/* CRACKY ENDLESS */
+/* CRACKY CLASSIC */
 
 /* NAVBAR */
 
@@ -230,7 +230,7 @@ footer a {
     width: 100%;
   }
 
-  /* CRACKY ENDLESS */
+  /* CRACKY CLASSIC */
 
   #crackyHomeButton {
     width: 100px;
