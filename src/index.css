@@ -13,15 +13,13 @@ body {
   font-family: 'Baloo 2';
 }
 
-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;         
+footer {     
   width: 100%;      
   text-align: center; 
   font-size: 0.8rem;
   color: #555;
   padding: 5px 0;  
+  margin-top: 60px;
 }
 
 footer a {
