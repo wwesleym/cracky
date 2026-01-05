@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/cracky/static/css/main.cfe9fbc0.css",
-    "main.js": "/cracky/static/js/main.ef24fdd0.js",
+    "main.css": "/cracky/static/css/main.6068cc46.css",
+    "main.js": "/cracky/static/js/main.1aeec73a.js",
     "index.html": "/cracky/index.html",
-    "main.cfe9fbc0.css.map": "/cracky/static/css/main.cfe9fbc0.css.map",
-    "main.ef24fdd0.js.map": "/cracky/static/js/main.ef24fdd0.js.map"
+    "main.6068cc46.css.map": "/cracky/static/css/main.6068cc46.css.map",
+    "main.1aeec73a.js.map": "/cracky/static/js/main.1aeec73a.js.map"
   },
   "entrypoints": [
-    "static/css/main.cfe9fbc0.css",
-    "static/js/main.ef24fdd0.js"
+    "static/css/main.6068cc46.css",
+    "static/js/main.1aeec73a.js"
   ]
 }
