@@ -146,7 +146,12 @@ export default function CrackyEndless() {
 
 
   // scroll to the bottom when inputRows or giveUpFlag is updated 
+  const firstRender = React.useRef(true)
   React.useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
     window.scrollTo({
       top: document.documentElement.scrollHeight,
       behavior: "smooth"
@@ -392,9 +397,9 @@ export default function CrackyEndless() {
       })}
 
       {/* give up text */}
-      {!cracked && giveUpFlag ? <p id="giveUpText">GAME OVER! The code is: {codeAnswer}</p> : ""}
+      {!cracked && giveUpFlag ? <p id="giveUpText">GAME OVER! <br></br>The code is: {codeAnswer}</p> : ""}
       
-      <br></br>
+      
 
       {/* number pad */}
       <div id="number-pad" className="number-pad">

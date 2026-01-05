@@ -9,8 +9,11 @@ body {
   background-color:rgb(161, 203, 212);
   padding-left: 5%;
   padding-right: 5%;
-  padding-bottom: 5%;
   font-family: 'Baloo 2';
+}
+
+#root {
+  padding-bottom: 1%;
 }
 
 footer {     
@@ -18,8 +21,7 @@ footer {
   text-align: center; 
   font-size: 0.8rem;
   color: #555;
-  padding: 5px 0;  
-  margin-top: 60px;
+  padding: 5px 0; 
 }
 
 footer a {
@@ -133,8 +135,7 @@ footer a {
 .input-row {
   display: flex;            
   justify-content: center;  
-  align-items: center;     
-  padding-top: 1%;
+  align-items: center;
   width: 60%;               
 }
 
@@ -193,7 +194,7 @@ footer a {
   gap: 10px;                          
   max-width: 250px;                    
   margin: 0 auto;                     
-  padding: 10px;                 
+  padding: 10px;
 }
 
 .num-btn {
