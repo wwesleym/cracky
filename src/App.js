@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { Routes, Route, useNavigate } from "react-router-dom";
-import CrackyHome from './CrackyHome';
+import CrackyHome from './pages/CrackyHome';
 import CrackyClassic from './CrackyClassic';
+import CrackySurvival from './CrackySurvival';
 
 export default function App() {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ export default function App() {
       <Routes>
         <Route exact path="/" element={<CrackyHome />} />
         <Route exact path="/classic" element={<CrackyClassic />} />
+        <Route exact path="/survival" element={<CrackySurvival />} />
       </Routes>
     </main>
   );

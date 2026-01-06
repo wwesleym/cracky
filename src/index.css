@@ -35,9 +35,11 @@ footer a {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: row;
+  gap: 10px;
 }
 
-#navigateToCrackyClassicButton {
+#navigateToCrackyClassicButton, #navigateToCrackySurvivalButton {
   width: 200px;
   font-family: 'Baloo 2';
   font-size: 1.5em;
@@ -52,8 +54,6 @@ footer a {
   width: 80%;
 }
 
-
-/* CRACKY CLASSIC */
 
 /* NAVBAR */
 
@@ -101,11 +101,32 @@ footer a {
 }
 
 #modal {
-  width: 500px;
+  position: fixed;      
+  top: 50%;
+  bottom: 50%;
+  background: white;
+  border-radius: 10px;
+  width: 90%;            /* responsive width */
+  max-width: 500px;       /* cap width on larger screens */
+  max-height: 80vh;       /* ensures it never fills the viewport */
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  overflow-y: auto;       /* scroll inside modal if content is too tall */
 }
 
 #closeModal {
   float: right;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+  z-index: 1000; /* make sure it’s above the page */
+  overflow-y: auto /* allow scroll if too big */
 }
 
 /* TITLE */
@@ -160,7 +181,7 @@ footer a {
   text-align: center;
   width: 30%;
   padding-right: 1%;
-  gap: 10px; 
+  gap: 10%; 
 }
 
 .clicks {
@@ -177,6 +198,14 @@ footer a {
   font-size: 2.5em;
   font-weight: bold;
   color:#B59F3B;
+}
+
+/* GUESS COUNTER (SURVIVAL) */
+#guessCountText {
+  margin: 3%;
+  text-align: center;
+  font-family:'Baloo 2';
+  font-size: 1.2em;
 }
 
 /* GIVE UP TEXT */
@@ -261,6 +290,10 @@ footer a {
     width: 50px;
     font-family: 'Baloo 2';
     font-size: 1em;
+  }
+
+  #modal {
+    width: 90%;
   }
 
   .title-label {

@@ -5,8 +5,8 @@ import InputRow from "./components/InputRow";
 import NumberPad from "./components/NumberPad";
 import Modal from "./components/Modal";
 
-export default function CrackyClassic() {
-  const game = GameLogic({mode: "classic"});
+export default function CrackySurvival() {
+  const game = GameLogic({mode: "survival"});
   const navigate = useNavigate();
   const [showHelp, setShowHelp] = useState(false);
 
@@ -79,7 +79,7 @@ export default function CrackyClassic() {
       {/* title */}
       <div className="title-label">
         <h1>CRACKY</h1>
-        <h3>- Classic -</h3>
+        <h3>- Survival -</h3>
       </div>
 
       {/* disabled row */}
@@ -95,6 +95,9 @@ export default function CrackyClassic() {
           checkNumberFieldLength={game.checkNumberFieldLength}
         />
       ))}
+
+      {/* guess counter */}
+      <p id="guessCountText">Guesses left: <b>{9 - game.guessCount + 1}</b></p>
 
       {/* give up text */}
       {!game.cracked && game.giveUpFlag ? <p id="giveUpText">GAME OVER! <br></br>The code is: {game.codeAnswer}</p> : ""}
