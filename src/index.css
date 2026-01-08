@@ -202,7 +202,7 @@ footer a {
 
 /* GUESS COUNTER (SURVIVAL) */
 #guessCountText {
-  margin: 3%;
+  margin: 1%;
   text-align: center;
   font-family:'Baloo 2';
   font-size: 1.2em;
@@ -210,7 +210,6 @@ footer a {
 
 /* GIVE UP TEXT */
 #giveUpText {
-  margin: 3%;
   text-align: center;
   font-family:'Baloo 2';
   font-size: 1.2em;

@@ -4,11 +4,26 @@ import GameLogic from "./game/GameLogic"
 import InputRow from "./components/InputRow";
 import NumberPad from "./components/NumberPad";
 import Modal from "./components/Modal";
+import useSound from "./hooks/useSound";
+import crackSound from "./assets/sounds/crack.mp3";
+import winSound from "./assets/sounds/win.mp3"
+import failSound from "./assets/sounds/fail.mp3"
 
 export default function CrackyClassic() {
-  const game = GameLogic({mode: "classic"});
+  const [soundOn, setSoundOn] = useState(() => {
+    const saved = localStorage.getItem("soundOn");
+    return saved === null ? true : saved === "true";
+  });
+  const playCrack = useSound(crackSound, soundOn);
+  const playWin = useSound(winSound, soundOn);
+  const playFail = useSound(failSound, soundOn);
+  const game = GameLogic({onWin: playWin, onFail: playFail, mode: "classic"});
   const navigate = useNavigate();
   const [showHelp, setShowHelp] = useState(false);
+
+  React.useEffect(() => {
+    localStorage.setItem("soundOn", soundOn);
+  }, [soundOn]);
 
   React.useEffect(() => {
     const handleGlobalKeyDown = (event) => {
@@ -43,7 +58,7 @@ export default function CrackyClassic() {
           digits[3 - lastFilledIndex] = "";
         }
       } else if (event.key === "Enter") {
-        game.crackButton();
+        crackButtonWithSound();
       }
 
       // update state
@@ -63,6 +78,22 @@ export default function CrackyClassic() {
     return () => window.removeEventListener("keydown", handleGlobalKeyDown);
   }, [game.inputRows, game.setInputValues, game.crackButton])
 
+  const crackButtonWithSound = () => {
+    // if game is over, then no sound
+    if (game.cracked || game.giveUpFlag) {
+      game.crackButton();
+      return;
+    }
+
+    const result = game.crackButton();
+    if (result == "continue") {
+      playCrack();
+    } else if (result == "win") {
+      playWin();
+    } else if (result == "fail") {
+      playFail();
+    }
+  };
 
   return (
     <div>
@@ -72,6 +103,9 @@ export default function CrackyClassic() {
         <button id="playAgainButton" type="button" onClick={game.refreshPage}>New CRACK</button>
         <button id="giveUpButton" type="button" onClick={game.handleGiveUp}>Give up CRACK</button>
         <button id="helpButton" onClick={() => setShowHelp(true)}>Help</button>
+        <button id="soundButton" onClick={() => setSoundOn(s => !s)}>
+          {soundOn ? "🔊" : "🔇"}
+        </button>
       </div>
 
       <Modal show={showHelp} setShow={setShowHelp} />
@@ -104,6 +138,7 @@ export default function CrackyClassic() {
         crackButton={game.crackButton}
         cracked={game.cracked}
         giveUpFlag={game.giveUpFlag}
+        handleCrack={crackButtonWithSound}
       />
 
     </div>
