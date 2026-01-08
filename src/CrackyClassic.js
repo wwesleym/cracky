@@ -78,7 +78,7 @@ export default function CrackyClassic() {
     return () => window.removeEventListener("keydown", handleGlobalKeyDown);
   }, [game.inputRows, game.setInputValues, game.crackButton])
 
-  const crackButtonWithSound = () => {
+  const crackButtonWithSound = async () => {
     // if game is over, then no sound
     if (game.cracked || game.giveUpFlag) {
       game.crackButton();
