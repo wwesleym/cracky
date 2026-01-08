@@ -1,46 +1,43 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
 let audioCtx;
 
-// creates audio context which gets reused
 function getAudioContext() {
-    if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    }
-    return audioCtx;
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  return audioCtx;
 }
 
 export default function useSound(src, enabled = true) {
-    const bufferRef = useRef(null);
+  const audioRef = useRef(null);
+  const unlockedRef = useRef(false);
 
-    // load and decode sound per sound file
-    useEffect(() => {
-        const loadSound = async () => {
-            const ctx = getAudioContext();
+  if (!audioRef.current) {
+    audioRef.current = new Audio(src);
+    audioRef.current.preload = "auto";
+  }
 
-            const res = await fetch(src);
-            const arrayBuffer = await res.arrayBuffer();
-            bufferRef.current = await ctx.decodeAudioData(arrayBuffer);
-        };
+  return async () => {
+    if (!enabled) return;
 
-        loadSound();
-    }, [src]);
+    const ctx = getAudioContext();
 
-    return async () => {
-        // stops playback if sound is muted or sound is not loaded
-        if (!enabled || !bufferRef.current) return;
+    if (!unlockedRef.current && ctx.state === "suspended") {
+      try {
+        await ctx.resume();
+        unlockedRef.current = true;
+      } catch {
+        return;
+      }
+    }
 
-        const ctx = getAudioContext();
+    audioRef.current.currentTime = 0;
 
-        // required for mobile
-        if (ctx.state === "suspended") {
-            await ctx.resume();
-        }
-
-        // create new source for every sound
-        const source = ctx.createBufferSource();
-        source.buffer = bufferRef.current;
-        source.connect(ctx.destination);
-        source.start(0);
-    };
+    try {
+      await audioRef.current.play();
+    } catch {
+      // mobile silently blocks if not unlocked yet
+    }
+  };
 }
