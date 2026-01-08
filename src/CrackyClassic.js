@@ -87,11 +87,11 @@ export default function CrackyClassic() {
 
     const result = game.crackButton();
     if (result == "continue") {
-      playCrack();
+      await playCrack();
     } else if (result == "win") {
-      playWin();
+      await playWin();
     } else if (result == "fail") {
-      playFail();
+      await playFail();
     }
   };
 
