@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 let audioCtx;
 
@@ -10,34 +10,34 @@ function getAudioContext() {
 }
 
 export default function useSound(src, enabled = true) {
-  const audioRef = useRef(null);
+  const bufferRef = useRef(null);
   const unlockedRef = useRef(false);
 
-  if (!audioRef.current) {
-    audioRef.current = new Audio(src);
-    audioRef.current.preload = "auto";
-  }
+  useEffect(() => {
+    const ctx = getAudioContext();
+
+    fetch(src)
+      .then(res => res.arrayBuffer())
+      .then(data => ctx.decodeAudioData(data))
+      .then(buffer => {
+        bufferRef.current = buffer;
+      });
+  }, [src]);
 
   return async () => {
     if (!enabled) return;
+    if (!bufferRef.current) return;
 
     const ctx = getAudioContext();
 
     if (!unlockedRef.current && ctx.state === "suspended") {
-      try {
-        await ctx.resume();
-        unlockedRef.current = true;
-      } catch {
-        return;
-      }
+      await ctx.resume();
+      unlockedRef.current = true;
     }
 
-    audioRef.current.currentTime = 0;
-
-    try {
-      await audioRef.current.play();
-    } catch {
-      // mobile silently blocks if not unlocked yet
-    }
+    const source = ctx.createBufferSource();
+    source.buffer = bufferRef.current;
+    source.connect(ctx.destination);
+    source.start(0);
   };
 }
