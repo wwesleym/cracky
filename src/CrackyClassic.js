@@ -17,7 +17,7 @@ export default function CrackyClassic() {
   const playCrack = useSound(crackSound, soundOn);
   const playWin = useSound(winSound, soundOn);
   const playFail = useSound(failSound, soundOn);
-  const game = GameLogic({onWin: playWin, onFail: playFail, mode: "classic"});
+  const game = GameLogic({mode: "classic"});
   const navigate = useNavigate();
   const [showHelp, setShowHelp] = useState(false);
 
@@ -87,11 +87,11 @@ export default function CrackyClassic() {
 
     const result = game.crackButton();
     if (result == "continue") {
-      await playCrack();
+      playCrack();
     } else if (result == "win") {
-      await playWin();
+      playWin();
     } else if (result == "fail") {
-      await playFail();
+      playFail();
     }
   };
 
@@ -101,7 +101,7 @@ export default function CrackyClassic() {
       <div className="nav-bar">
         <button id="crackyHomeButton" onClick={() => navigate("/")}>CRACKY Home</button>
         <button id="playAgainButton" type="button" onClick={game.refreshPage}>New CRACK</button>
-        <button id="giveUpButton" type="button" onClick={game.handleGiveUp}>Give up CRACK</button>
+        <button id="giveUpButton" type="button" onClick={() => {playFail(); game.handleGiveUp();}}>Give up CRACK</button>
         <button id="helpButton" onClick={() => setShowHelp(true)}>Help</button>
         <button id="soundButton" onClick={() => setSoundOn(s => !s)}>
           {soundOn ? "🔊" : "🔇"}

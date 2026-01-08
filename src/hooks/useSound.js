@@ -1,47 +1,33 @@
 import { useRef } from "react";
 
-let audioCtx;
-
-function getAudioContext() {
-  if (!audioCtx) {
-    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  }
-  return audioCtx;
-}
+let unlocked = false;
 
 export default function useSound(src, enabled = true) {
-  const bufferRef = useRef(null);
-  const loadingRef = useRef(false);
-  const unlockedRef = useRef(false);
+  const poolRef = useRef([]);
 
-  async function loadBuffer() {
-    if (bufferRef.current || loadingRef.current) return;
-    loadingRef.current = true;
-
-    const ctx = getAudioContext();
-    const res = await fetch(src);
-    const arrayBuffer = await res.arrayBuffer();
-    bufferRef.current = await ctx.decodeAudioData(arrayBuffer);
+  // create small pool
+  if (poolRef.current.length === 0) {
+    for (let i = 0; i < 4; i++) {
+      const a = new Audio(src);
+      a.preload = "auto";
+      poolRef.current.push(a);
+    }
   }
 
-  return async () => {
+  return () => {
     if (!enabled) return;
 
-    const ctx = getAudioContext();
-
-    if (!unlockedRef.current) {
-      await ctx.resume();
-      unlockedRef.current = true;
+    if (!unlocked) {
+      const unlock = new Audio();
+      unlock.play().catch(() => {});
+      unlocked = true;
     }
 
-    if (!bufferRef.current) {
-      await loadBuffer();
-      if (!bufferRef.current) return;
-    }
+    // find free audio
+    const audio =
+      poolRef.current.find(a => a.paused) || poolRef.current[0];
 
-    const source = ctx.createBufferSource();
-    source.buffer = bufferRef.current;
-    source.connect(ctx.destination);
-    source.start();
+    audio.currentTime = 0;
+    audio.play().catch(() => {});
   };
 }

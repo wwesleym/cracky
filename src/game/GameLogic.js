@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 
-export default function GameLogic({ onWin, onFail, mode = "classic"}) {
+export default function GameLogic({mode = "classic"}) {
     const [inputValues, setInputValues] = useState({
       firstInput: "",
       secondInput: "",
@@ -171,7 +171,6 @@ export default function GameLogic({ onWin, onFail, mode = "classic"}) {
 
     const winner = useCallback(() => {
       setCracked(true);
-      onWin?.();
       alert(`YOU CRACKED IT IN ${guessCount} GUESS${guessCount > 1 ? 'ES' : ''}!`);
     }, [guessCount]);
 
@@ -197,7 +196,6 @@ export default function GameLogic({ onWin, onFail, mode = "classic"}) {
 
       if (mode === "survival" && guessCount >= 9) {
         setGiveUpFlag(true);
-        onFail?.();
         return "fail";
       }
 
@@ -210,7 +208,6 @@ export default function GameLogic({ onWin, onFail, mode = "classic"}) {
         return;
       }
       setGiveUpFlag(true);
-      onFail?.();
 
       // disable last row
       inputRows[inputRows.length-1].inputValues.disabledFlag = true
